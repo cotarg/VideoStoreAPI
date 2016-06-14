@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
   res.status(200).json({whatevs: 'whatevs!!!'})
 })
 
-router.get('/', function (req, res, next) {
+router.get('/zomg', function (req, res, next) {
   res.status(200).json({itWorks: 'it works!'})
 })
 
