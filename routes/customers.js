@@ -1,5 +1,5 @@
 // customers index
-router.get ('/customers' , 'customers_controller.list of customers')
+router.get ('/customers' , 'customers_controller.customerList')
 
 // customers sort
 router.get ('/customers/sort/name' , 'customers_controller.customersNameSort')
