@@ -9,6 +9,8 @@ var bodyParser = require('body-parser')
 // var movieRoutes = require('./routes/movies')
 // var customerRoutes = require('./routes/customers')
 // var rentalRoutes = require('./routes/rentals')
+//
+
 
 
 var app = express()

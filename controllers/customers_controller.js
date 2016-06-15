@@ -1,3 +1,7 @@
+
+
+
+
 var CustomersController = {
   index:  function(req, res){
     res.render('index',  { title: ""})
@@ -5,7 +9,8 @@ var CustomersController = {
 
   // Retrive a list of all customers
   customerList:  function(req, res){
-    res.render('index',  { title: ""})
+    var customers =
+    res.json()
   },
 
   // Retrive a subset of customers (/customers/sort/name?n=10&p=2)
