@@ -1,5 +1,3 @@
-var express = require('express')
-var router = express.Router()
 var routes = {
   list_all_customers: '/customers',
   customers_sorted_by_name: '/customers/sort/name',
@@ -20,14 +18,3 @@ var routes = {
   checkin_film_from_cust: '/rentals/:title/return',
   list_of_overdue_films: '/rentals/overdue'
 }
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.status(200).json(routes)
-})
-
-router.get('/zomg', function (req, res, next) {
-  res.status(200).json({itWorks: 'it works!'})
-})
-
-module.exports = router
