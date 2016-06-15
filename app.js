@@ -4,7 +4,16 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+var massive = require("massive")
+var connectionString = "postgres://localhost/video_api"
 
+// connect to Massive and get the db instance. You can safely use the
+// convenience sync method here because its on app load
+// you can also use loadSync - it's an alias
+var massiveInstance = massive.connectSync({connectionString : connectionString})
+
+// Set a reference to the massive instance on Express' app:
+app.set('db', massiveInstance)
 
 // var movieRoutes = require('./routes/movies')
 // var customerRoutes = require('./routes/customers')
