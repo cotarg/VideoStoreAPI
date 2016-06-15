@@ -1,14 +1,14 @@
 // movies index
-get '/movies' => 'controller#listAllMovies'
+router.get ('/movies' , 'movies_controller.listAllMovies')
 
 // movies sorted
-get '/movies/sort/title' => 'controller#moviesByTitle'
-get '/movies/sort/release_date' => 'controller#moviesByRelease'
+router.get ('/movies/sort/title' , 'movies_controller.moviesByTitle')
+router.get ('/movies/sort/release_date' , 'movies_controller.moviesByRelease')
 
 // look at individual titles
 // this requires a film title which is used in the HTTP request
-get '/movies/:title' => 'controller#seeMovieDetails'
+router.get ('/movies/:title' , 'movies_controller.seeMovieDetails')
 
-get '/movies/:title/current' => 'controller#customersRentingThisFilm'
-get '/movies/:title/history/sort/name' => 'controller#filmRentalHistoryByCustName'
-get '/movies/:title/history/sort/date' => 'controller#filmRentalHistoryByCODate'
+router.get ('/movies/:title/current' , 'movies_controller.customersRentingThisFilm')
+router.get ('/movies/:title/history/sort/name' , 'movies_controller.filmRentalHistoryByCustName')
+router.get ('/movies/:title/history/sort/date' , 'movies_controller.filmRentalHistoryByCODate')
