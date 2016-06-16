@@ -1,8 +1,10 @@
 var express = require('express')
 var router = express.Router()
+var moviesController = require('../controllers/movies_controller')
 
 // movies index
 router.get('/movies', 'movies_controller.listAllMovies')
+router.get('/movies/help', 'movies_controller.index')
 
 // movies sorted
 router.get('/movies/sort/title', 'movies_controller.moviesByTitle')

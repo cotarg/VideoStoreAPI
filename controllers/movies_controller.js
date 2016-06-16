@@ -1,11 +1,24 @@
+// var moviesRoutes = { 
+//   list_all_movies: 'http://movies',
+//   movies_sorted_by_title: 'http://movies/sort/title',
+//   movies_sorted_by_release: 'http://movies/sort/release_date',
+//   movie_details: 'http://movies/:title',
+//   movie_checkouts: 'http://movies/:title/current',
+//   movie_hist_name_sort: 'http://movies/:title/history/sort/name',
+//   movie_hist_checkout_sort: 'http://movies/:title/history/sort/date'
+// }
+
 var MoviesController = {
-  index:  function(req, res){
-    res.render('index',  { title: ""})
+  index: function (req, res) {
+    res.json(moviesRoutes)
   },
 
   // Retrieve a list of all movies (/movies)
   listAllMovies: function(req, res){
-    res.render(''), { title: ""})
+    var db = req.app.get('db')
+    db.run("select * from customers", function(err, result) {
+      res.json(result)
+    });
   },
 
   // Retrieve a subset of movies (/movies/sort/release-date?n=5&p=1)
@@ -13,36 +26,36 @@ var MoviesController = {
   // Sort columns are
   // title
   // release_date
-  moviesByTitle: function(req, res){
-    res.render(''), { title: ""})
+  moviesByTitle: function (req, res) {
+    res.render((''), {title: ''})
   },
 
-  moviesByRelease: function(req, res){
-    res.render(''), { title: ""})
+  moviesByRelease: function (req, res) {
+    res.render((''), {title: ''})
   },
 
-  seeMovieDetails: function(req, res){
-    res.render(''), { title: ""})
+  seeMovieDetails: function (req, res) {
+    res.render((''), {title: ''})
   },
 
 
   // Given a movie's title...
   // Get a list of customers that have currently checked out a copy of the film (/movies/Jaws/current)
   // include each customer's name, phone number, and account credit
-  customersRentingThisFilm: function(req, res){
-    res.render(''), { title: ""})
+  customersRentingThisFilm: function (req, res) {
+    res.render((''), {title: ''})
   },
 
-  filmRentalHistoryByCustName: function(req, res){
-    res.render(''), { title: ""})
+  filmRentalHistoryByCustName: function (req, res) {
+    res.render((''), {title: ''})
   },
 
-  filmRentalHistoryByCODate: function(req, res){
-    res.render(''), { title: ""})
+  filmRentalHistoryByCODate: function (req, res) {
+    res.render((''), {title: ''})
   }
-
-
 }
+
+// MoviesController.prototype = moviesRoutes
 
 module.exports = MoviesController
 
