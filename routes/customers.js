@@ -1,11 +1,18 @@
+var express = require('express');
+var router = express.Router();
+var customers_controller = require('../controllers/customers_controller')
+
+
 // customers index
-router.get ('/customers' , 'customers_controller.customerList')
+router.get('/' , customers_controller.customerList)
 
 // customers sort
-router.get ('/customers/sort/name' , 'customers_controller.customersNameSort')
-router.get ('/customers/sort/registered_at' , 'customers_controller.customersRegisteredSort')
-router.get ('/customers/sort/postal_code' , 'customers_controller.customersPostalSort')
+router.get('/sort/name' , customers_controller.customersNameSort)
+router.get('/sort/registered_at' , customers_controller.customersRegisteredSort)
+router.get('/sort/postal_code' , customers_controller.customersPostalSort)
 
 // customers by id
-router.get ('/customers/:id/current' , 'customers_controller.currentCheckOuts')
-router.get ('/customers/:id/history' , 'customers_controller.historicalCheckOuts')
+router.get('/:id/current' , customers_controller.currentCheckOuts)
+router.get('/:id/history' , customers_controller.historicalCheckOuts)
+
+module.exports = router

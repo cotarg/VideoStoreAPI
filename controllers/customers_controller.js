@@ -7,7 +7,7 @@ var CustomersController = {
   // Retrive a list of all customers
   customerList:  function(req, res){
     var db = req.app.get('db')
-    db.run("select * from products", function(err, result){
+    db.run("select * from customers", function(err, result){
       res.json(result)
     });
   },
