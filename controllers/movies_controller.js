@@ -31,12 +31,17 @@ var MoviesController = {
   },
 
   seeMovieDetails: function (req, res) {
-    res.render((''), {title: ''})
+    var db = req.app.get('db')
+    var title = req.params.title
+    db.movies.where('title=$1', title, function (err, result) {
+      res.json(result)
+    })
   },
 
   // Given a movie's title...
   // Get a list of customers that have currently checked out a copy of the film (/movies/Jaws/current)
   // include each customer's name, phone number, and account credit
+  // THIS IS WAITING BECAUSE IT REQUIRES RENTALS!
   customersRentingThisFilm: function (req, res) {
     res.render((''), {title: ''})
   },
