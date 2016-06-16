@@ -1,16 +1,15 @@
-
-
-
-
 var CustomersController = {
+
   index:  function(req, res){
     res.render('index',  { title: ""})
   },
 
   // Retrive a list of all customers
   customerList:  function(req, res){
-    var customers =
-    res.json()
+    var db = req.app.get('db')
+    db.run("select * from products", function(err, result){
+      res.json(result)
+    });
   },
 
   // Retrive a subset of customers (/customers/sort/name?n=10&p=2)

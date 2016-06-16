@@ -15,10 +15,10 @@ var massiveInstance = massive.connectSync({connectionString : connectionString})
 // Set a reference to the massive instance on Express' app:
 app.set('db', massiveInstance)
 
-// var movieRoutes = require('./routes/movies')
-// var customerRoutes = require('./routes/customers')
-// var rentalRoutes = require('./routes/rentals')
-//
+var movieRoutes = require('./routes/movies')
+var customerRoutes = require('./routes/customers')
+var rentalRoutes = require('./routes/rentals')
+
 
 
 
