@@ -9,13 +9,11 @@
 // }
 
 var MoviesController = {
-  index: function (req, res) {
-    res.json(moviesRoutes)
-  },
+
 
   // Retrieve a list of all movies (/movies)
   listAllMovies: function(req, res){
-    var db = req.app.get('db')
+    var db = req.app.get('db');
     db.run("select * from customers", function(err, result) {
       res.json(result)
     });
