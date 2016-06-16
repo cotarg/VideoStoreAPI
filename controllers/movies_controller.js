@@ -17,11 +17,17 @@ var MoviesController = {
   // title
   // release_date
   moviesByTitle: function (req, res) {
-    res.render((''), {title: ''})
+    var db = req.app.get('db')
+    db.run('select * from movies order by title asc', function (err, result) {
+      res.json(result)
+    })
   },
 
   moviesByRelease: function (req, res) {
-    res.render((''), {title: ''})
+    var db = req.app.get('db')
+    db.run('select * from movies order by release_date asc', function (err, result) {
+      res.json(result)
+    })
   },
 
   seeMovieDetails: function (req, res) {
