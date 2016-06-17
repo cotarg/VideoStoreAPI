@@ -28,15 +28,15 @@ Rental.create = function (placeholder, callback) {
   })
 }
 
-Account.createSync = function(placeholder, callback) {
-  var account = db.accounts.save({
+Rental.createSync = function(placeholder, callback) {
+  var rental = db.rentals.save({
     customer_id: placeholder.customer_id,
     movie_id: placeholder.movie_id,
     due_date: placeholder.due_date,
     checkout_date: placeholder.checkout_date
   }
 
-  return new Account(account.id);
+  return new Rental(rental.id);
 }
 
 module.exports = Rental;
