@@ -8,6 +8,18 @@ var Rental = function(id) {
 };
 
 // Instance functions
+Rental.return = function (callback) {
+  db.accounts.findOne(this.id, function(error, result) {
+    if(error) {
+      callback(error, undefined);
+    } else {
+      callback(null, result.balance);
+    }
+  })
+
+  return this
+  }
+}
 
 
 // Class Functions
@@ -38,5 +50,7 @@ Rental.createSync = function(placeholder, callback) {
 
   return new Rental(rental.id);
 }
+
+
 
 module.exports = Rental;
