@@ -18,25 +18,25 @@ var massiveInstance = massive.connectSync({connectionString : connectionString})
 // Set a reference to the massive instance on Express' app:
 app.set('db', massiveInstance)
 
-// var movieRoutes = require('./routes/movies')
-// var rentalRoutes = require('./routes/rentals')
 var indexRoutes = require('./routes/index')
 app.use('/', indexRoutes)
+
+var movieRoutes = require('./routes/movies')
+app.use('/movies', movieRoutes)
 
 var customerRoutes = require('./routes/customers')
 app.use(paginate.middleware(10, 50));
 app.use('/customers', customerRoutes)
 
-
-
-
+// var rentalRoutes = require('./routes/rentals')
+// app.use('/rentals', rentalRoutes)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
