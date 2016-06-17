@@ -4,6 +4,7 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+var paginate = require('express-paginate');
 var app = express()
 
 var massive = require('massive')
@@ -23,6 +24,7 @@ var indexRoutes = require('./routes/index')
 app.use('/', indexRoutes)
 
 var customerRoutes = require('./routes/customers')
+app.use(paginate.middleware(10, 50));
 app.use('/customers', customerRoutes)
 
 

@@ -20,7 +20,8 @@ var CustomersController = {
   customersNameSort:  function(req, res){
     var db = req.app.get('db')
     var num = Number(req.query.n)
-    db.customers.find({}, {order: 'name asc', limit: num}, function(err, result){
+    var p = Number(req.query.p)
+    db.customers.find({}, {order: 'name asc', limit: num, offset: p}, function(err, result){
       res.json(result)
     });
   },
@@ -29,7 +30,8 @@ var CustomersController = {
   customersRegisteredSort:  function(req, res){
     var db = req.app.get('db')
     var num = Number(req.query.n)
-    db.customers.find({}, {order: 'registered_at asc', limit: num}, function(err, result){
+    var p = Number(req.query.p)
+    db.customers.find({}, {order: 'registered_at asc', limit: num, offset: p}, function(err, result){
       res.json(result)
     });
   },
@@ -37,7 +39,8 @@ var CustomersController = {
   customersPostalSort:  function(req, res){
     var db = req.app.get('db')
     var num = Number(req.query.n)
-    db.customers.find({}, {order: 'postal_code asc', limit: num}, function(err, result){
+    var p = Number(req.query.p)
+    db.customers.find({}, {order: 'postal_code asc', limit: num, offset: p}, function(err, result){
       res.json(result)
     });
   },
