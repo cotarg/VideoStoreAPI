@@ -9,7 +9,7 @@ var Rental = function(id) {
 
 // Instance functions
 Rental.return = function (callback) {
-  db.accounts.findOne(this.id, function(error, result) {
+  db.rentals.findOne(this.id, function(error, result) {
     if(error) {
       callback(error, undefined);
     } else {
@@ -26,14 +26,14 @@ Rental.return = function (callback) {
 // placeholder is currently placeholding while I figure out
 // how to build an object or wevs from params
 Rental.create = function (placeholder, callback) {
-  db.accounts.save({
+  db.rentals.save({
     customer_id: placeholder.customer_id,
     movie_id: placeholder.movie_id,
     due_date: placeholder.due_date,
     checkout_date: placeholder.checkout_date
-  }, function (error, account) {
-    if (error || !account) {
-      callback(error || new Error("Could not create account"), undefined);
+  }, function (error, rental) {
+    if (error || !rental) {
+      callback(error || new Error("Could not create rental"), undefined);
     } else {
       callback(null, new Rental(rental.id));
     }
