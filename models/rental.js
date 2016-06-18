@@ -4,7 +4,11 @@ var db = app.get("db");
 
 // Constructor function
 var Rental = function(id) {
-  this.id = id;
+  this.id = id
+  this.customer_id = customer_id,
+  this.movie_id = movie_id,
+  this.due_date = due_date,
+  checkout_date: placeholder.checkout_date
 };
 
 // Instance functions
