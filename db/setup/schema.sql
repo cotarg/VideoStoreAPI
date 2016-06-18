@@ -28,6 +28,6 @@ CREATE TABLE rentals(
   customer_id INTEGER,
   movie_id INTEGER,
   due_date TIMESTAMP,
-  checkout_date TIMESTAMP
+  checkout_date TIMESTAMP,
   returned_date TIMESTAMP
 );
