@@ -3,27 +3,27 @@ var app = require("../app");
 var db = app.get("db");
 
 // Constructor function
-var Rental = function(id) {
+var Rental = function(inputsPlaceholder) {
   this.id = id
   this.customer_id = customer_id,
   this.movie_id = movie_id,
   this.due_date = due_date,
-  checkout_date: placeholder.checkout_date
+  this.checkout_date = checkout_date
 };
 
 // Instance functions
 Rental.return = function (callback) {
+  var return_date = new Date()
   db.rentals.findOne(this.id, function(error, result) {
     if(error) {
       callback(error, undefined);
     } else {
-      callback(null, result.balance);
+      db.rentals.save({returned_date: this.returned_date})
     }
   })
 
   return this
   }
-}
 
 
 // Class Functions
