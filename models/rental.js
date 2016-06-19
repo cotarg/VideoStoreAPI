@@ -18,7 +18,7 @@ Rental.return = function (callback) {
     if(error) {
       callback(error, undefined);
     } else {
-      db.rentals.save({returned_date: return_date})
+      db.rentals.save({id: this.id, returned_date: return_date})
     }
   })
 
