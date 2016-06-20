@@ -28,8 +28,8 @@ var customerRoutes = require('./routes/customers')
 app.use(paginate.middleware(10, 50));
 app.use('/customers', customerRoutes)
 
-// var rentalRoutes = require('./routes/rentals')
-// app.use('/rentals', rentalRoutes)
+var rentalRoutes = require('./routes/rentals')
+app.use('/rentals', rentalRoutes)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
