@@ -23,14 +23,19 @@ var RentalController = {
   // router.post ('/rentals/:title/checkout' , 'rental_controller.checkoutFilmToCust')
 
   checkoutFilmToCust:  function(req, res){
-    var locals = {}
-    // var customer = req.body.customer_id
+    var checkOutLength = 259200
+    var id = req.body.customer["id"]
     var title = req.params.title
     var db = req.app.get('db')
+    var today = new Date()
+    var today_in_seconds = today.getTime()
+    var due_seconds = today_in_seconds + checkOutLength
+    var due_date = new Date(due_seconds)
+
     db.movies.where('title = $1', [title], function(err, result) {
       console.log('damn')
     // find instance of that movie in database so we can get its inventory and movie_id
-      db.rentals.save({movie_id: result[0].id}, function(err, inserted){
+      db.rentals.save({movie_id: result[0].id, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
         res.json(title)
       })
 
