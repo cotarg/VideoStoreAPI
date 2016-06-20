@@ -24,13 +24,17 @@ var RentalController = {
 
   checkoutFilmToCust:  function(req, res){
     var locals = {}
+    // var customer = req.body.customer_id
     var title = req.params.title
     var db = req.app.get('db')
-    db.movies.where('title = $1', [title]), function(err, result) {
-    //find instance of that movie in database so we can get its inventory and movie_id
-    db.rentals.saveSync({movie_id: 6}, function(err, inserted){})
-    }
-    res.json(title)
+    db.movies.where('title = $1', [title], function(err, result) {
+      console.log('damn')
+    // find instance of that movie in database so we can get its inventory and movie_id
+      db.rentals.save({movie_id: result[0].id}, function(err, inserted){
+        res.json(title)
+      })
+
+    })
   },
 
   checkInFilmToCust:  function(req, res){
