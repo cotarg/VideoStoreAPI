@@ -1,17 +1,30 @@
 var Rental = require('../models/rental')
 
 var RentalController = {
-  index:  function(req, res){
-    res.render('index',  { title: ""})
+  // See a list of customers that have currently checked out any of the movie's inventory (/rentals/Jaws/customers)
+  // router.get ('/:title/current' , rental_controller.customersRentingThisFilm)
+  rentalInfo: function(req, res){
+    var db = req.app.get('db')
+    var title = req.params.title
+    db.movies.find({title: title}, function(err, result){
+      res.json(result)
+    });
   },
 
-  // See a list of customers that have currently checked out any of the movie's inventory (/rentals/Jaws/customers)
   customersRentingThisFilm:  function(req, res){
-    res.render('index',  { title: ""})
+    var db = req.app.get('db')
+    var title = req.params.title
+    db.rentals.find({title: title}, function(err, result){
+      res.json(result)
+    });
   },
 
   filmRentalHistoryByCustName:  function(req, res){
-    res.render('index',  { title: ""})
+    var db = req.app.get('db')
+    var title = req.params.title
+    db.rentals.find({title: title}, function(err, result){
+      res.json(result)
+    });
   },
 
   filmRentalHistoryByCODate:  function(req, res){
@@ -37,11 +50,19 @@ var RentalController = {
     var today_in_seconds = today.getTime()
     var due_seconds = today_in_seconds + checkOutLength
     var due_date = new Date(due_seconds)
+    var rental_cost = 2
 
     db.movies.where('title = $1', [title], function(err, result) {
-      console.log('damn')
+      var stock = result[0].stock - 1
+      db.movies.save({id: result[0].id, stock: stock }, function(err, res){
+
+      })
+      db.customers.find({id: id}, function(err, result){
+        credit = result[0].account_credit - rental_cost
+        db.customers.save({id: result[0].id, account_credit: credit }, function(err, res){})
+      });
     // find instance of that movie in database so we can get its inventory and movie_id
-      db.rentals.save({movie_id: result[0].id, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
+      db.rentals.save({movie_id: result[0].id, title: title, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
         res.json(title)
       })
 
@@ -54,10 +75,10 @@ var RentalController = {
     var db = req.app.get('db')
     var today = new Date()
 
-    db.movies.where('title = $1', [title], function(err, result) {
+    db.rentals.where('title = $1 AND customer_id = $2', [title, id], function(err, result) {
       console.log('damn')
     // find instance of that movie in database so we can get its inventory and movie_id
-      db.rentals.save({movie_id: result[0].id, customer_id: id, returned_date: today}, function(err, inserted){
+      db.rentals.save({id: result[0].id, returned_date: today}, function(err, inserted){
         res.json(title)
       })
 

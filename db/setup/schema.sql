@@ -26,6 +26,7 @@ CREATE TABLE customers(
 CREATE TABLE rentals(
   id serial PRIMARY KEY,
   customer_id INTEGER,
+  title TEXT,
   movie_id INTEGER,
   due_date TIMESTAMP,
   checkout_date TIMESTAMP,
