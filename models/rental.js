@@ -12,7 +12,7 @@ var Rental = function(inputsPlaceholder) {
 };
 
 // Instance functions
-Rental.return = function (callback) {
+Rental.prototype.return = function (callback) {
   var return_date = new Date()
   db.rentals.findOne(this.id, function(error, result) {
     if(error) {

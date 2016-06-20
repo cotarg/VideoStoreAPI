@@ -21,6 +21,10 @@ var RentalController = {
   // Establish a return date
   // Charge the customer's account (cost up to you)
   // router.post ('/rentals/:title/checkout' , 'rental_controller.checkoutFilmToCust')
+//   {
+//         "customer": { "id": "9000"
+//         }
+// }
 
   checkoutFilmToCust:  function(req, res){
     var checkOutLength = 259200000
