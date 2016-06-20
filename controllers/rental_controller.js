@@ -1,3 +1,5 @@
+var Rental = require('../models/rental')
+
 var RentalController = {
   index:  function(req, res){
     res.render('index',  { title: ""})
@@ -46,8 +48,20 @@ var RentalController = {
     })
   },
 
-  checkInFilmToCust:  function(req, res){
-    res.render('index',  { title: ""})
+  checkInFilmToCust:  function(req, res) {
+    var id = req.body.customer["id"]
+    var title = req.params.title
+    var db = req.app.get('db')
+    var today = new Date()
+
+    db.movies.where('title = $1', [title], function(err, result) {
+      console.log('damn')
+    // find instance of that movie in database so we can get its inventory and movie_id
+      db.rentals.save({movie_id: result[0].id, customer_id: id, returned_date: today}, function(err, inserted){
+        res.json(title)
+      })
+
+    })
   },
 
   // rental_controller.overdue:  function(req, res){

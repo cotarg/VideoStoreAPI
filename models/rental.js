@@ -29,7 +29,7 @@ Rental.prototype.return = function (callback) {
 // Class Functions
 // placeholder is currently placeholding while I figure out
 // how to build an object or wevs from params
-Rental.create = function (placeholder, callback) {
+Rental.prototype.create = function (placeholder, callback) {
   db.rentals.save({
     customer_id: placeholder.customer_id,
     movie_id: placeholder.movie_id,
@@ -39,12 +39,12 @@ Rental.create = function (placeholder, callback) {
     if (error || !rental) {
       callback(error || new Error("Could not create rental"), undefined);
     } else {
-      callback(null, new Rental(rental.id));
+      callback(null, new Rental(rental.prototype.id));
     }
   })
 }
 
-Rental.createSync = function(placeholder, callback) {
+Rental.prototype.createSync = function(placeholder, callback) {
   var rental = db.rentals.save({
     customer_id: placeholder.customer_id,
     movie_id: placeholder.movie_id,
