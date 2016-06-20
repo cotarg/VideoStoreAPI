@@ -3,6 +3,7 @@ var app = require("../app");
 var db = app.get("db");
 
 // Constructor function
+// inputsPlaceholder should be the post body...
 var Rental = function(inputsPlaceholder) {
   this.id = id
   this.customer_id = customer_id,
