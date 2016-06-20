@@ -20,17 +20,26 @@ var RentalController = {
   // "check out" one of the movie's inventory to the customer (/rentals/Jaws/check-out)
   // Establish a return date
   // Charge the customer's account (cost up to you)
+  // router.post ('/rentals/:title/checkout' , 'rental_controller.checkoutFilmToCust')
+
   checkoutFilmToCust:  function(req, res){
-    res.render('index',  { title: ""})
+    var locals = {}
+    var title = req.params.title
+    var db = req.app.get('db')
+    db.movies.where('title = $1', [title]), function(err, result) {
+    //find instance of that movie in database so we can get its inventory and movie_id
+    db.rentals.saveSync({movie_id: 6}, function(err, inserted){})
+    }
+    res.json(title)
   },
 
   checkInFilmToCust:  function(req, res){
     res.render('index',  { title: ""})
   },
 
-  rental_controller.overdue:  function(req, res){
-    res.render('index',  { title: ""})
-  }
+  // rental_controller.overdue:  function(req, res){
+  //   res.render('index',  { title: ""})
+  // }
 
 
 }
