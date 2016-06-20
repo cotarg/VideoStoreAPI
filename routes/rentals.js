@@ -4,6 +4,7 @@ var rental_controller = require('../controllers/rental_controller')
 
 // rentals by title
 // titles of films must be provided in request
+router.get ('/overdue' , rental_controller.overdue)
 router.get ('/:title', rental_controller.rentalInfo)
 router.get ('/:title/current' , rental_controller.customersRentingThisFilm)
 // router.get ('/:title/history/sort/name' , rental_controller.filmRentalHistoryByCustName)
@@ -16,6 +17,5 @@ router.post ('/:title/checkout' , rental_controller.checkoutFilmToCust)
 router.post ('/:title/return' , rental_controller.checkInFilmToCust)
 
 // overdues
-// router.get ('/overdue' , rental_controller.overdue)
 
 module.exports = router
