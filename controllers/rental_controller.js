@@ -23,7 +23,7 @@ var RentalController = {
   // router.post ('/rentals/:title/checkout' , 'rental_controller.checkoutFilmToCust')
 
   checkoutFilmToCust:  function(req, res){
-    var checkOutLength = 259200
+    var checkOutLength = 259200000
     var id = req.body.customer["id"]
     var title = req.params.title
     var db = req.app.get('db')
