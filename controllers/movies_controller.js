@@ -18,7 +18,10 @@ var MoviesController = {
   // release_date
   moviesByTitle: function (req, res) {
     var db = req.app.get('db')
-    db.run('select * from movies order by title asc', function (err, result) {
+    var num = Number(req.query.n)
+    var p = Number(req.query.p)
+
+    db.movies.run('select * from movies order by title asc', function (err, result) {
       res.json(result)
     })
   },
