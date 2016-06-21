@@ -13,10 +13,6 @@ var CustomersController = {
   },
 
   // Retrive a subset of customers (/customers/sort/name?n=10&p=2)
-  // Given a sort column, return n customer records, offset by p records (this will be used to create "pages" of customers)
-  // db.products.find({},{order: "price desc"}, function(err,products){
-  //   //products ordered in descending fashion
-  // });
   customersNameSort:  function(req, res){
     var db = req.app.get('db')
     var num = Number(req.query.n)
@@ -26,7 +22,6 @@ var CustomersController = {
     });
   },
 
-  //sort by registered_at
   customersRegisteredSort:  function(req, res){
     var db = req.app.get('db')
     var num = Number(req.query.n)
@@ -51,8 +46,18 @@ var CustomersController = {
   // ordered by check out date
   currentCheckOuts:  function(req, res){
     var db = req.app.get('db')
-
-    res.render('index',  { title: ""})
+    var cust_id = req.params.id
+    db.run("select movies.title, rentals.customer_id, rentals.returned_date, rentals.checkout_date from rentals, movies where rentals.customer_id = $1 and rentals.title = movies.title and rentals.returned_date is null;", [cust_id], function(err, result){
+      res.json(result)
+    })
+    
+    // db.rentals.where('customer_id = $1 and returned_date is null order by checkout_date',  [cust_id], function(err, result){
+    //   titles = result.map(function(rental){
+    //     db.movies.find({title: rental.title}, function(err, movies){
+    //       res.json(movies)
+    //     })
+    //   })
+    // })
   },
 
   // Given a customer's id...
@@ -61,8 +66,11 @@ var CustomersController = {
   // ordered by check out date
   historicalCheckOuts:  function(req, res){
     var db = req.app.get('db')
+    var cust_id = req.params.id
+    db.rentals.where('customer_id = $1 and returned_date is not null order by checkout_date',  [cust_id], function(err, result){
+      res.json(result)
+    })
 
-    res.render('index',  { title: ""})
   }
 
 
