@@ -28,7 +28,9 @@ var MoviesController = {
 
   moviesByRelease: function (req, res) {
     var db = req.app.get('db')
-    db.movies.find({}, {order: 'title asc', limit: num, offset: p}, function (err, result) {
+    var num = Number(req.query.n)
+    var p = Number(req.query.n)
+    db.movies.find({}, {order: 'release_date asc', limit: num, offset: p}, function (err, result) {
       res.json(result)
     })
   },
