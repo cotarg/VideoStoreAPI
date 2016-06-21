@@ -21,14 +21,14 @@ var MoviesController = {
     var num = Number(req.query.n)
     var p = Number(req.query.p)
 
-    db.movies.run('select * from movies order by title asc', function (err, result) {
+    db.movies.find({}, {order: 'title asc', limit: num, offset: p}, function (err, result) {
       res.json(result)
     })
   },
 
   moviesByRelease: function (req, res) {
     var db = req.app.get('db')
-    db.run('select * from movies order by release_date asc', function (err, result) {
+    db.movies.find({}, {order: 'title asc', limit: num, offset: p}, function (err, result) {
       res.json(result)
     })
   },
