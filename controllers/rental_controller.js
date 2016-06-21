@@ -79,18 +79,48 @@ var RentalController = {
 
     })
   },
-
+// name, movie title, check-out date, and return date
   overdue:  function(req, res){
     var db = req.app.get('db')
     var overdue_rentals = []
     var today = new Date()
-    db.rentals.find({"due_date <": today, returned_date: null}, function(err, result) {
+    db.run("select customers.name, rentals.title , rentals.checkout_date, rentals.due_date from customers, rentals where rentals.customer_id = customers.id and rentals.returned_date is null and rentals.due_date < $1;", [today], function(err, result){
+      overdue_rentals = result
+
+
+
       res.json(result)
     })
-    
+    // db.run("select * from rentals INNER JOIN customers ON (rentals.customer_id = customers.id);", function(err, result){
+    //   res.json(result)
+    // })
   }
 
 
 }
 
 module.exports = RentalController
+//
+// SELECT *
+//     FROM weather INNER JOIN cities ON (weather.city = cities.name);
+
+
+// SELECT customers.name, rentals.title, rental.checkout_date, rental.due_date
+// FROM rentals
+// INNER JOIN customers
+// ON customers.id == rental.customer_id
+// WHERE rental.due_date < today ; returned_date: null
+//
+//
+// SELECT weather.city, weather.temp_lo, weather.temp_hi,
+//        weather.prcp, weather.date, cities.location
+//     FROM weather, cities
+//     WHERE cities.name = weather.city;
+
+
+// SELECT Customers.CustomerName, Orders.OrderID
+// FROM Customers
+// INNER JOIN Orders
+// ON Customers.CustomerID=Orders.CustomerID
+
+// Orderitem.joins(:order).where("orderitems.user_id = ? and orders.status = ?", self.id, status).sum(:price)
