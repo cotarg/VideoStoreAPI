@@ -22,31 +22,31 @@ var RentalController = {
 //   }
 // }
 
-  checkoutFilmToCust:  function(req, res){
-    var checkOutLength = 259200000
-    var id = req.body.customer["id"]
-    var title = req.params.title
-    var db = req.app.get('db')
-    var today = new Date()
-    var today_in_seconds = today.getTime()
-    var due_seconds = today_in_seconds + checkOutLength
-    var due_date = new Date(due_seconds)
-    var rental_cost = 2
+checkoutFilmToCust:  function(req, res){
+  var checkOutLength = 259200000
+  var id = req.body.customer["id"]
+  var title = req.params.title
+  var db = req.app.get('db')
+  var today = new Date()
+  var today_in_seconds = today.getTime()
+  var due_seconds = today_in_seconds + checkOutLength
+  var due_date = new Date(due_seconds)
+  var rental_cost = 2
 
-    db.movies.where('title = $1', [title], function(err, result) {
-      var stock = result[0].stock - 1
-      db.movies.save({id: result[0].id, stock: stock }, function(err, res){
-      })
-      db.customers.find({id: id}, function(err, result){
-        credit = result[0].account_credit - rental_cost
-        db.customers.save({id: result[0].id, account_credit: credit }, function(err, res){})
-      });
-      db.rentals.save({movie_id: result[0].id, title: title, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
-        res.json(title)
-      })
-
+  db.movies.where('title = $1', [title], function(err, result) {
+    var stock = result[0].stock - 1
+    db.movies.save({id: result[0].id, stock: stock }, function(err, res){
     })
-  },
+    db.customers.find({id: id}, function(err, result){
+      credit = result[0].account_credit - rental_cost
+      db.customers.save({id: result[0].id, account_credit: credit }, function(err, res){})
+    });
+    db.rentals.save({movie_id: result[0].id, title: title, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
+      res.json(title)
+    })
+
+  })
+},
 
   checkInFilmToCust:  function(req, res) {
     var id = req.body.customer["id"]
