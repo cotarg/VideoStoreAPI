@@ -10,7 +10,6 @@ var RentalController = {
     });
   },
 
-  // See a list of customers that have currently checked out any of the movie's inventory
   customersRentingThisFilm:  function(req, res){
     var db = req.app.get('db')
     var title = req.params.title
@@ -18,22 +17,9 @@ var RentalController = {
       res.json(result)
     });
   },
-
-  // filmRentalHistoryByCustName:  function(req, res){
-  //   var db = req.app.get('db')
-  //   var title = req.params.title
-  //   db.rentals.find({title: title}, function(err, result){
-  //     res.json(result)
-  //   });
-  // },
-  //
-  // filmRentalHistoryByCODate:  function(req, res){
-  //   res.render('index',  { title: ""})
-  // },
-
-//   {
-//         "customer": { "id": "9000"
-//         }
+// {
+//   "customer": { "id": "9000"
+//   }
 // }
 
   checkoutFilmToCust:  function(req, res){
@@ -79,23 +65,15 @@ var RentalController = {
 
     })
   },
-// name, movie title, check-out date, and return date
+
   overdue:  function(req, res){
     var db = req.app.get('db')
     var overdue_rentals = []
     var today = new Date()
     db.run("select customers.name, rentals.title , rentals.checkout_date, rentals.due_date from customers, rentals where rentals.customer_id = customers.id and rentals.returned_date is null and rentals.due_date < $1;", [today], function(err, result){
-      overdue_rentals = result
-
-
-
       res.json(result)
     })
-    // db.run("select * from rentals INNER JOIN customers ON (rentals.customer_id = customers.id);", function(err, result){
-    //   res.json(result)
-    // })
   }
-
 
 }
 
