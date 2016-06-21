@@ -33,22 +33,25 @@ var RentalController = {
     var due_date = new Date(due_seconds)
     var rental_cost = 2
 
-    db.movies.where('title = $1', [title], function(err, result, next) {
-      if(err) {
-        var err = new Error("No such movie");
-        err.status = 404;
-        next(err);
-        } else {
-            var stock = result[0].stock - 1
-            db.movies.save({id: result[0].id, stock: stock }, function(err, res){
-            })
-            db.customers.find({id: id}, function(err, result){
-              credit = result[0].account_credit - rental_cost
-              db.customers.save({id: result[0].id, account_credit: credit }, function(err, res){})
-            });
-            db.rentals.save({movie_id: result[0].id, title: title, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
-              res.json(title)
-            })
+    db.movies.where('title = $1', [title], function(err, result) {
+      if (result == []) {
+        res.status(404).json({error: "No such movie"})
+      } else if (result[0].stock <= 0) {
+        res.status(200).json({error: "That movie is out of stock."})
+      } else if (db.customers.find({id}) == null){
+        res.status(200).json({error: "No such customer."})
+      }
+      else {
+          var stock = result[0].stock - 1
+          db.movies.save({id: result[0].id, stock: stock }, function(err, res){
+          })
+          db.customers.find({id: id}, function(err, result){
+            credit = result[0].account_credit - rental_cost
+            db.customers.save({id: result[0].id, account_credit: credit }, function(err, res){})
+          });
+          db.rentals.save({movie_id: result[0].id, title: title, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
+            res.json(title)
+          })
       }
     })
   },
