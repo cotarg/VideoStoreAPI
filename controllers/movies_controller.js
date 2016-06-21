@@ -50,9 +50,10 @@ var MoviesController = {
   customersRentingThisFilm: function(req, res){
     var db = req.app.get('db')
     var title = req.params.title
-    db.run('select customers.name, customers.phone, customers.account_credit, from rentals, customers where rentals.title=$1 and rentals.returned_date is null;', [title], function(err, result){
+    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.title=$1 and rentals.returned_date is null;', [title], function(err, result){
       res.json(result)
     })
+    
   },
 
   filmRentalHistoryByCustName: function (req, res) {
