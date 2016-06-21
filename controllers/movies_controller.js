@@ -28,7 +28,9 @@ var MoviesController = {
 
   moviesByRelease: function (req, res) {
     var db = req.app.get('db')
-    db.movies.find({}, {order: 'title asc', limit: num, offset: p}, function (err, result) {
+    var num = Number(req.query.n)
+    var p = Number(req.query.n)
+    db.movies.find({}, {order: 'release_date asc', limit: num, offset: p}, function (err, result) {
       res.json(result)
     })
   },
@@ -45,8 +47,12 @@ var MoviesController = {
   // Get a list of customers that have currently checked out a copy of the film (/movies/Jaws/current)
   // include each customer's name, phone number, and account credit
   // THIS IS WAITING BECAUSE IT REQUIRES RENTALS!
-  customersRentingThisFilm: function (req, res) {
-    res.render((''), {title: ''})
+  customersRentingThisFilm: function(req, res){
+    var db = req.app.get('db')
+    var title = req.params.title
+    db.run('select customers.name, customers.phone, customers.account_credit, rentals.customer_id, rentals.returned_date, rentals.checkout_date from customers, rentals where rentals.title=$1 and rentals.returned_date is null;', [title], function(err, result){
+      res.json(result)
+    })
   },
 
   filmRentalHistoryByCustName: function (req, res) {
