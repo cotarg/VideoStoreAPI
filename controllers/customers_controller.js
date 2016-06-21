@@ -50,20 +50,8 @@ var CustomersController = {
     db.run("select movies.title, rentals.customer_id, rentals.returned_date, rentals.checkout_date from rentals, movies where rentals.customer_id = $1 and rentals.title = movies.title and rentals.returned_date is null;", [cust_id], function(err, result){
       res.json(result)
     })
-    
-    // db.rentals.where('customer_id = $1 and returned_date is null order by checkout_date',  [cust_id], function(err, result){
-    //   titles = result.map(function(rental){
-    //     db.movies.find({title: rental.title}, function(err, movies){
-    //       res.json(movies)
-    //     })
-    //   })
-    // })
-  },
 
-  // Given a customer's id...
-  //List the movies a customer has checked out in the past
-  // includes return date
-  // ordered by check out date
+  
   historicalCheckOuts:  function(req, res){
     var db = req.app.get('db')
     var cust_id = req.params.id
