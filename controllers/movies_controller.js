@@ -47,28 +47,28 @@ var MoviesController = {
   // Get a list of customers that have currently checked out a copy of the film (/movies/Jaws/current)
   // include each customer's name, phone number, and account credit
   // THIS IS WAITING BECAUSE IT REQUIRES RENTALS!
-  customersRentingThisFilm: function(req, res){
-    var db = req.app.get('db')
-    var title = req.params.title
-    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null;', [title], function(err, result) {
-      res.json(result)
-    })
-  },
-
-  filmRentalHistoryByCustName: function(req, res){
-    var db = req.app.get('db')
-    var title = req.params.title
-
-    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is not null order by customers.name asc;', [title], function(err, result) {
-      res.json(result)
-    })
-  },
-
-  filmRentalHistoryByCODate: function(req, res){
+  customersRentingThisFilm: function (req, res) {
     var db = req.app.get('db')
     var title = req.params.title
 
     db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null;', [title], function(err, result) {
+    })
+  },
+
+  filmRentalHistoryByCustName: function (req, res) {
+    var db = req.app.get('db')
+    var title = req.params.title
+
+    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is not null order by customers.name asc;', [title], function (err, result) {
+      res.json(result)
+    })
+  },
+
+  filmRentalHistoryByCODate: function (req, res) {
+    var db = req.app.get('db')
+    var title = req.params.title
+
+    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null order by checkout_date asc;', [title], function(err, result) {
       res.json(result)
     })
   }
