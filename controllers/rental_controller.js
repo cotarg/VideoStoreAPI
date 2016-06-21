@@ -6,7 +6,11 @@ var RentalController = {
     var db = req.app.get('db')
     var title = req.params.title
     db.movies.find({title: title}, function(err, result){
+      if (result[0] == null){
+        res.status(404).json({error: "No can has movie."})
+      } else {
       res.json(result)
+    }
     });
   },
 
@@ -14,7 +18,11 @@ var RentalController = {
     var db = req.app.get('db')
     var title = req.params.title
     db.rentals.find({title: title}, function(err, result){
+      if (result[0] == null){
+        res.status(404).json({error: "No can has movie."})
+      } else {
       res.json(result)
+    }
     });
   },
 // {
@@ -35,11 +43,11 @@ var RentalController = {
 
     db.movies.where('title = $1', [title], function(err, result) {
       if (result == []) {
-        res.status(404).json({error: "No such movie"})
+        res.status(404).json({error: "No can has movie"})
       } else if (result[0].stock <= 0) {
         res.status(200).json({error: "That movie is out of stock."})
       } else if (db.customers.find({id}) == null){
-        res.status(200).json({error: "No such customer."})
+        res.status(200).json({error: "Who is that? They don't patronize our fabulous video store."})
       }
       else {
           var stock = result[0].stock - 1
@@ -64,14 +72,17 @@ var RentalController = {
 
     db.rentals.where('title = $1 AND customer_id = $2', [title, id], function(err, result) {
       db.movies.find({title: title}, function(err, result){
-        var stock = result[0].stock + 1
+        if (result[0] == null){
+          res.status(404).json({error: "NOooooOOOOooo"})
+        } else {
+         var stock = result[0].stock + 1
         db.movies.save({id: result[0].id, stock: stock }, function(err, res){})
-      });
+        }
       db.rentals.save({id: result[0].id, returned_date: today}, function(err, inserted){
         res.json(title)
       })
-
     })
+  })
   },
 
   overdue:  function(req, res){
