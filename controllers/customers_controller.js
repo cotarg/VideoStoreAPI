@@ -16,17 +16,9 @@ var CustomersController = {
   },
 
   // Retrive a subset of customers (/customers/sort/name?n=10&p=2)
-  // customersNameSort:  function(req, res){
-  //   var db = req.app.get('db')
-  //   var num = Number(req.query.n)
-  //   var p = Number(req.query.p)
-  //   db.customers.find({}, {order: 'name asc', limit: num, offset: p}, function(err, result){
-  //     res.json(result)
-  //   });
-  // },
 
   customersNameSort: function(req, res, next) {
-    var options = {limit: req.query.n, offset: req.query.p}
+    var options = {order: 'name asc' ,limit: req.query.n, offset: req.query.p}
     Customer.nameSort(options, function(error, customers){
       if(error) {
         var err = new Error("Error retrieving customer list:\n" + error.message);
@@ -39,35 +31,30 @@ var CustomersController = {
   },
 
 
-  // sort: function(req, res, next) {
-  //   var options = {order: req.params.search, limit: req.query.n, offset: req.query.p}
-  //   Customer.sort(options, function(error, customers) {
-  //     if(error) {
-  //       var err = new Error("Error retrieving customer list:\n" + error.message);
-  //       err.status = 500;
-  //       next(err);
-  //     } else {
-  //       res.json(customers);
-  //     }
-  //   });
-  // },
-
   customersRegisteredSort:  function(req, res){
-    var db = req.app.get('db')
-    var num = Number(req.query.n)
-    var p = Number(req.query.p)
-    db.customers.find({}, {order: 'registered_at asc', limit: num, offset: p}, function(err, result){
-      res.json(result)
-    });
+    var options = {order: 'registered_at asc', limit: req.query.n, offset: req.query.p}
+    Customer.registeredSort(options, function(error, customers){
+      if(error) {
+        var err = new Error("Error retrieving customer list:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(customers)
+      }
+    })
   },
 
   customersPostalSort:  function(req, res){
-    var db = req.app.get('db')
-    var num = Number(req.query.n)
-    var p = Number(req.query.p)
-    db.customers.find({}, {order: 'postal_code asc', limit: num, offset: p}, function(err, result){
-      res.json(result)
-    });
+    var options = {order: 'postal_code asc', limit: req.query.n, offset: req.query.p}
+    Customer.postalSort(options, function(error, customers){
+      if(error) {
+        var err = new Error("Error retrieving customer list:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(customers)
+      }
+    })
   },
 
   // Given a customer's id...

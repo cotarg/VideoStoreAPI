@@ -26,4 +26,24 @@ Customers.nameSort = function(options,callback) {
   });
 };
 
+Customers.registeredSort = function(options, callback) {
+  db.customers.find({}, options, function(error, customers){
+    if(error || !customers) {
+      callback(error || new Error("Could not retrieve customers"), undefined);
+    } else {
+      callback(null, customers);
+    }
+  });
+};
+
+Customers.postalSort = function(options, callback) {
+  db.customers.find({}, options, function(error, customers){
+    if(error || !customers) {
+      callback(error || new Error("Could not retrieve customers"), undefined);
+    } else {
+      callback(null, customers);
+    }
+  });
+};
+
 module.exports = Customers;
