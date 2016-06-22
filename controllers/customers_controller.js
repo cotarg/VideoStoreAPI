@@ -1,26 +1,56 @@
+var Customer = require("../models/customer");
+
 var CustomersController = {
 
-  index:  function(req, res){
-    res.render('index',  { title: ""})
-  },
-
   // Retrive a list of all customers
-  customerList:  function(req, res){
-    var db = req.app.get('db')
-    db.run("select * from customers", function(err, result){
-      res.json(result)
-    });
+  customerList:  function(req, res, next){
+    Customer.all(function(error, customers) {
+      if(error) {
+        var err = new Error("Error retrieving customer list:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(customers)
+      }
+    })
   },
 
   // Retrive a subset of customers (/customers/sort/name?n=10&p=2)
-  customersNameSort:  function(req, res){
-    var db = req.app.get('db')
-    var num = Number(req.query.n)
-    var p = Number(req.query.p)
-    db.customers.find({}, {order: 'name asc', limit: num, offset: p}, function(err, result){
-      res.json(result)
-    });
+  // customersNameSort:  function(req, res){
+  //   var db = req.app.get('db')
+  //   var num = Number(req.query.n)
+  //   var p = Number(req.query.p)
+  //   db.customers.find({}, {order: 'name asc', limit: num, offset: p}, function(err, result){
+  //     res.json(result)
+  //   });
+  // },
+
+  customersNameSort: function(req, res, next) {
+    var options = {limit: req.query.n, offset: req.query.p}
+    Customer.nameSort(options, function(error, customers){
+      if(error) {
+        var err = new Error("Error retrieving customer list:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(customers)
+      }
+    })
   },
+
+
+  // sort: function(req, res, next) {
+  //   var options = {order: req.params.search, limit: req.query.n, offset: req.query.p}
+  //   Customer.sort(options, function(error, customers) {
+  //     if(error) {
+  //       var err = new Error("Error retrieving customer list:\n" + error.message);
+  //       err.status = 500;
+  //       next(err);
+  //     } else {
+  //       res.json(customers);
+  //     }
+  //   });
+  // },
 
   customersRegisteredSort:  function(req, res){
     var db = req.app.get('db')
