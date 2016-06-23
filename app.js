@@ -5,20 +5,22 @@ var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var paginate = require('express-paginate');
-var app = express()
-
+var app = module.exports = express();
 var massive = require('massive')
+
+//database setup
 var connectionString = 'postgres://localhost/video_api'
+var massiveInstance = massive.connectSync({connectionString : connectionString})
+app.set('db', massiveInstance)
 
 // connect to Massive and get the db instance. You can safely use the
 // convenience sync method here because its on app load
 // you can also use loadSync - it's an alias
-var massiveInstance = massive.connectSync({connectionString : connectionString})
+
 
 // Set a reference to the massive instance on Express' app:
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.set('db', massiveInstance)
 
 var indexRoutes = require('./routes/index')
 app.use('/', indexRoutes)
