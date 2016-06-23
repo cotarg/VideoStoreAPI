@@ -48,7 +48,11 @@ var CustomersController = {
     var db = req.app.get('db')
     var cust_id = req.params.id
     db.run("select movies.title, rentals.customer_id, rentals.returned_date, rentals.checkout_date from rentals, movies where rentals.customer_id = $1 and rentals.title = movies.title and rentals.returned_date is null;", [cust_id], function(err, result){
-      res.json(result)
+      if (result == null) {
+        res.status(404).json({error: "No can has customer"})
+      } else {
+        res.json(result)
+      }
     })
   },
 
@@ -56,12 +60,14 @@ var CustomersController = {
     var db = req.app.get('db')
     var cust_id = req.params.id
     db.rentals.where('customer_id = $1 and returned_date is not null order by checkout_date',  [cust_id], function(err, result){
-      res.json(result)
+      if (result == null) {
+        res.status(404).json({error: "No can has customer"})
+      } else {
+        res.json(result)
+      }
     })
-
   }
-
-
 }
+
 
 module.exports = CustomersController
