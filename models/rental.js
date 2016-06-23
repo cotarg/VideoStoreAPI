@@ -1,60 +1,79 @@
-// var movie = require('../models/movies')
-// var app = require("../app");
-// var db = app.get("db");
+var app = require("../app");
+var db = app.get("db");
 
-// // Constructor function
-// var Rental = function(inputsPlaceholder) {
-//   this.id = id
-//   this.customer_id = customer_id,
-//   this.movie_id = movie_id,
-//   this.due_date = due_date,
-//   this.checkout_date = checkout_date
+var Rentals = function(id) {
+  this.id = id;
+};
+
+Rentals.deets = function(title , callback) {
+  db.movies.find({title: title}, function(error, result){
+    if(error) {
+      callback(error, undefined);
+    } else {
+      callback(null, result);
+    }
+  });
+};
+
+Rentals.whoRentedThis = function(title, callback){
+  db.rentals.find({title: title}, function(err, result) {
+    if(error) {
+      callback(error, undefined);
+    } else {
+      callback(null, result);
+    }
+  });
+};
+//
+// Customers.nameSort = function(options,callback) {
+//   db.customers.find({}, options, function(error, customers) {
+//     if(error || !customers) {
+//       callback(error || new Error("Could not retrieve customers"), undefined);
+//     } else {
+//       callback(null, customers);
+//     }
+//   });
 // };
-
-// // Instance functions
-// Rental.prototype.return = function (callback) {
-//   var return_date = new Date()
-//   db.rentals.findOne(this.id, function(error, result) {
-//     if(error) {
-//       callback(error, undefined);
+//
+// Customers.registeredSort = function(options, callback) {
+//   db.customers.find({}, options, function(error, customers){
+//     if(error || !customers) {
+//       callback(error || new Error("Could not retrieve customers"), undefined);
 //     } else {
-//       db.rentals.save({id: this.id, returned_date: return_date})
+//       callback(null, customers);
 //     }
-//   })
-
-//   return this
-//   }
-
-
-// // Class Functions
-// // placeholder is currently placeholding while I figure out
-// // how to build an object or wevs from params
-// Rental.prototype.create = function (placeholder, callback) {
-//   db.rentals.save({
-//     customer_id: placeholder.customer_id,
-//     movie_id: placeholder.movie_id,
-//     due_date: placeholder.due_date,
-//     checkout_date: placeholder.checkout_date
-//   }, function (error, rental) {
-//     if (error || !rental) {
-//       callback(error || new Error("Could not create rental"), undefined);
+//   });
+// };
+//
+// Customers.postalSort = function(options, callback) {
+//   db.customers.find({}, options, function(error, customers){
+//     if(error || !customers) {
+//       callback(error || new Error("Could not retrieve customers"), undefined);
 //     } else {
-//       callback(null, new Rental(rental.prototype.id));
+//       callback(null, customers);
 //     }
-//   })
-// }
+//   });
+// };
+//
+// Customers.currentrentals = function(cust_id, callback){
+//   db.run("select movies.title, rentals.customer_id, rentals.returned_date, rentals.checkout_date from rentals, movies where rentals.customer_id = $1 and rentals.title = movies.title and rentals.returned_date is null;", [cust_id], function(error, result){
+//     if(error || !result) {
+//       callback(error || new Error("Could not retrieve data"), undefined);
+//     } else {
+//       callback(null, result);
+//     }
+//   });
+// };
+//
+// Customers.pastRentals = function(cust_id, callback){
+//   db.rentals.where('customer_id = $1 and returned_date is not null order by checkout_date',  [cust_id], function(error, result){
+//     if(error || !result) {
+//       callback(error || new Error("Could not retrieve data"), undefined);
+//     } else {
+//       callback(null, result);
+//     }
+//   });
+// };
+//
 
-// Rental.prototype.createSync = function(placeholder, callback) {
-//   var rental = db.rentals.save({
-//     customer_id: placeholder.customer_id,
-//     movie_id: placeholder.movie_id,
-//     due_date: placeholder.due_date,
-//     checkout_date: placeholder.checkout_date
-//   }
-
-//   return new Rental(rental.id);
-// }
-
-
-
-// module.exports = Rental;
+module.exports = Rentals;

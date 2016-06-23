@@ -3,17 +3,21 @@ var Rental = require('../models/rental')
 var RentalController = {
 
   rentalInfo: function(req, res){
-    var db = req.app.get('db')
     var title = req.params.title
-    db.movies.find({title: title}, function(err, result){
-      if (result[0] == null){
+    Rental.deets(title, function(error, result) {
+      if(error) {
+        var err = new Error("Error retrieving rental info:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else if (result[0] == null){
         res.status(404).json({error: "No can has movie."})
       } else {
-      res.json(result)
-    }
-    });
+        res.json(result)
+      }
+    })
   },
 
+//this method is fucked up, we need to fix it big time
   customersRentingThisFilm:  function(req, res){
     var db = req.app.get('db')
     var title = req.params.title
