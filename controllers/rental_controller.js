@@ -17,54 +17,32 @@ var RentalController = {
     })
   },
 
-//this method is fucked up, we need to fix it big time
-  customersRentingThisFilm:  function(req, res){
-    var db = req.app.get('db')
+  customersRentingThisFilm: function (req, res) {
     var title = req.params.title
-    db.rentals.find({title: title}, function(err, result){
-      if (result[0] == null){
+    Rental.whoRentedThis(title, function(error, result) {
+      if(error) {
+        var err = new Error("Error retrieving customer info:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else if (result[0] == null){
         res.status(404).json({error: "No can has movie."})
       } else {
-      res.json(result)
-    }
-    });
+        res.json(result)
+      }
+    })
   },
-// {
-//   "customer": { "id": "9000"
-//   }
-// }
 
   checkoutFilmToCust:  function(req, res){
-    var checkOutLength = 259200000
     var id = req.body.customer["id"]
     var title = req.params.title
-    var db = req.app.get('db')
-    var today = new Date()
-    var today_in_seconds = today.getTime()
-    var due_seconds = today_in_seconds + checkOutLength
-    var due_date = new Date(due_seconds)
-    var rental_cost = 2
 
-    db.movies.where('title = $1', [title], function(err, result) {
-      console.log('result was ' ,result)
-      if (result.length  == 0) {
-        res.status(404).json({error: "No can has movie"})
-      } else if (result[0].stock <= 0) {
-        res.status(200).json({error: "That movie is out of stock."})
-      } else if (db.customers.find({id}) == null){
-        res.status(200).json({error: "Who is that? They don't patronize our fabulous video store."})
-      }
-      else {
-          var stock = result[0].stock - 1
-          db.movies.save({id: result[0].id, stock: stock }, function(err, res){
-          })
-          db.customers.find({id: id}, function(err, result){
-            credit = result[0].account_credit - rental_cost
-            db.customers.save({id: result[0].id, account_credit: credit }, function(err, res){})
-          });
-          db.rentals.save({movie_id: result[0].id, title: title, customer_id: id, checkout_date: today, due_date: due_date}, function(err, inserted){
-            res.json(title)
-          })
+    Rental.checkout(title, id, function(error, result){
+      if(error) {
+        var err = new Error("Error checkout out movie:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(result)
       }
     })
   },
@@ -72,32 +50,28 @@ var RentalController = {
   checkInFilmToCust:  function(req, res) {
     var id = req.body.customer["id"]
     var title = req.params.title
-    var db = req.app.get('db')
-    var today = new Date()
-
-    db.rentals.where('title = $1 AND customer_id = $2', [title, id], function(err, result) {
-      db.movies.find({title: title}, function(err, result){
-        if (result[0] == null){
-          res.status(404).json({error: "NOooooOOOOooo"})
-        } else {
-         var stock = result[0].stock + 1
-        db.movies.save({id: result[0].id, stock: stock }, function(err, res){})
-        }
-      db.rentals.save({id: result[0].id, returned_date: today}, function(err, inserted){
-        res.json(title)
-      })
+    Rental.checkin(title, id, function(error, result){
+      if(error) {
+        var err = new Error("Error checkout out movie:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(result)
+      }
     })
-  })
   },
 
   overdue:  function(req, res){
-    var db = req.app.get('db')
-    var overdue_rentals = []
-    var today = new Date()
-    db.run("select customers.name, rentals.title , rentals.checkout_date, rentals.due_date from customers, rentals where rentals.customer_id = customers.id and rentals.returned_date is null and rentals.due_date < $1;", [today], function(err, result){
-      res.json(result)
+    Rental.overdue(function(error, result){
+      if(error) {
+        var err = new Error("Error checkout out movie:\n" + error.message);
+        err.status = 500;
+        next(err);
+      } else {
+        res.json(result)
+      }
     })
-  }
+  },
 
 }
 
