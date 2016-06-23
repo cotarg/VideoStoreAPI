@@ -39,7 +39,12 @@ var MoviesController = {
     var db = req.app.get('db')
     var title = req.params.title
     db.movies.where('title=$1', title, function (err, result) {
-      res.json(result)
+      if (result[0] == null) {
+        res.status(404).json({error: "No can has movie"})
+      } else {
+
+        res.json(result)
+      }
     })
   },
 
