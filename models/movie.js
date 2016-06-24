@@ -19,4 +19,6 @@ Movie.prototype.getStock = function(callback) {
   return this;
 };
 
+Movie.end = function () { db.end() }
+
 module.exports = Movie
