@@ -88,6 +88,4 @@ Rentals.overdue = function(callback){
 }
 
 
-
-
 module.exports = Rentals;
