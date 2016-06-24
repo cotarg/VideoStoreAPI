@@ -63,6 +63,16 @@ describe('rental', function(){
       })
     })
   })
+
+  describe(".overdue", function(){
+    it('returns a list of overdue rentals and who owes them', function(done){
+      Rental.overdue(function(error, result){
+        expect(Object.keys(result[0])).toEqual(['name','title', 'checkout_date', 'due_date'])
+        done()
+      })
+    })
+  })
+  
   describe('.checkout', function() {
     it('creates a rental instance in the database if successful', function(done){
       Rental.checkout("King Kong", '30', function(error, result){
@@ -114,5 +124,6 @@ describe('rental', function(){
       done()
     })
   });
+
 
 })
