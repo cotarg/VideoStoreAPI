@@ -36,7 +36,7 @@ var RentalController = {
     var id = req.body.customer["id"]
     var title = req.params.title
 
-    Rental.checkout(title, id, function(error, result){
+    Rental.checkout(title, id, function(error, result, next){
       if(error) {
         var err = new Error("Error checking out movie:\n" + error.message);
         err.status = 500;
