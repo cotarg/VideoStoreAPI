@@ -32,7 +32,7 @@ var RentalController = {
     })
   },
 
-  checkoutFilmToCust:  function(req, res){
+  checkoutFilmToCust:  function(req, res, next){
     var id = req.body.customer["id"]
     var title = req.params.title
 
@@ -47,7 +47,7 @@ var RentalController = {
     })
   },
 
-  checkInFilmToCust:  function(req, res) {
+  checkInFilmToCust:  function(req, res, next) {
     var id = req.body.customer["id"]
     var title = req.params.title
     Rental.checkin(title, id, function(error, result){
@@ -61,7 +61,7 @@ var RentalController = {
     })
   },
 
-  overdue:  function(req, res){
+  overdue:  function(req, res, next){
     Rental.overdue(function(error, result){
       if(error) {
         var err = new Error("Error finding overdue movies:\n" + error.message);

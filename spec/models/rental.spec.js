@@ -50,5 +50,26 @@ describe('rental', function(){
     })
   })
 
+  describe('.checkout', function() {
+    it('creates a rental instance in the database if successful', function(done){
+      Rental.checkout("King Kong", '30', function(error, result){
+        expect(error).toBe(null)
+        expect(result).toNotBe(null)
+        expect(Object.keys(result)).toEqual(['id', 'customer_id', 'title', 'movie_id', 'due_date', 'checkout_date', 'returned_date'])
+        done()
+      })
+    })
+
+    it("won't checkout movies that aren't in the database", function(done){
+      Rental.checkout("Beep Boop", '20', function(error, result){
+        expect(error).toBe(null)
+        expect(result).toNotBe(null)
+        expect(result).toBe('No can has movie')
+        done()
+      })
+    })
+
+  })
+
 
 })

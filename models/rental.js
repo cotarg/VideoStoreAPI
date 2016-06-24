@@ -26,6 +26,10 @@ Rentals.whoRentedThis = function(title, callback){
 };
 
 const doCheckout = (customer, movie, callback) => {
+  console.log("customer")
+  console.log(customer.id)
+  console.log("movie")
+  console.log(movie.title)
   var checkOutLength = 259200000
   var today = new Date()
   var today_in_seconds = today.getTime()
@@ -56,7 +60,7 @@ Rentals.checkout = function(title, id, callback){
       console.log(customer);
       if (customer.length == 0 || err) return callback(null, "Who is that? They don't patronize our fabulous video store.")
 
-      doCheckout(customer, movies[0], callback)
+      doCheckout(customer[0], movies[0], callback)
     })
   })
 }
