@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for VideoStoreAPI/controllers/movies_controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">VideoStoreAPI/controllers/</a> movies_controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.06% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.06% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/33</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var MoviesController = {
+  index: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    res.render('index', {title: ''})</span>
+  },
+&nbsp;
+  // Retrieve a list of all movies (/movies)
+  listAllMovies:  <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    db.run('select * from movies', <span class="fstat-no" title="function not covered" >function (err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      res.json(result)</span>
+    })
+  },
+&nbsp;
+  // Retrieve a subset of movies (/movies/sort/release-date?n=5&amp;p=1)
+  // Given a sort column, return n movie records, offset by p records (this will be used to create 'pages' of movies)
+  // Sort columns are
+  // title
+  // release_date
+  moviesByTitle: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    var num = Number(req.query.n)</span>
+<span class="cstat-no" title="statement not covered" >    var p = Number(req.query.p)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    db.movies.find({}, {order: 'title asc', limit: num, offset: p}, <span class="fstat-no" title="function not covered" >function (err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      res.json(result)</span>
+    })
+  },
+&nbsp;
+  moviesByRelease: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    var num = Number(req.query.n)</span>
+<span class="cstat-no" title="statement not covered" >    var p = Number(req.query.n)</span>
+<span class="cstat-no" title="statement not covered" >    db.movies.find({}, {order: 'release_date asc', limit: num, offset: p}, <span class="fstat-no" title="function not covered" >function (err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      res.json(result)</span>
+    })
+  },
+&nbsp;
+  seeMovieDetails: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    var title = req.params.title</span>
+<span class="cstat-no" title="statement not covered" >    db.movies.where('title=$1', title, <span class="fstat-no" title="function not covered" >function (err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (result[0] == null) {</span>
+<span class="cstat-no" title="statement not covered" >        res.status(404).json({error: "No can has movie"})</span>
+      } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.json(result)</span>
+      }
+    })
+  },
+&nbsp;
+  // Given a movie's title...
+  // Get a list of customers that have currently checked out a copy of the film (/movies/Jaws/current)
+  // include each customer's name, phone number, and account credit
+  // THIS IS WAITING BECAUSE IT REQUIRES RENTALS!
+  customersRentingThisFilm: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    var title = req.params.title</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null;', [title], <span class="fstat-no" title="function not covered" >function(err, result) {</span></span>
+    })
+  },
+&nbsp;
+  filmRentalHistoryByCustName: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    var title = req.params.title</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is not null order by customers.name asc;', [title], <span class="fstat-no" title="function not covered" >function (err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      res.json(result)</span>
+    })
+  },
+&nbsp;
+  filmRentalHistoryByCODate: <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    var db = req.app.get('db')</span>
+<span class="cstat-no" title="statement not covered" >    var title = req.params.title</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null order by checkout_date asc;', [title], <span class="fstat-no" title="function not covered" >function(err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      res.json(result)</span>
+    })
+  }
+}
+&nbsp;
+module.exports = MoviesController
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 24 2016 09:57:03 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
