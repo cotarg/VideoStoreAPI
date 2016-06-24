@@ -6,6 +6,7 @@ var Rentals = function(id) {
 };
 
 Rentals.deets = function(title , callback) {
+  console.log(title)
   db.movies.find({title: title}, function(error, result){
     if(error) {
       callback(error, undefined);
@@ -26,10 +27,6 @@ Rentals.whoRentedThis = function(title, callback){
 };
 
 const doCheckout = (customer, movie, callback) => {
-  console.log("customer")
-  console.log(customer.id)
-  console.log("movie")
-  console.log(movie.title)
   var checkOutLength = 259200000
   var today = new Date()
   var today_in_seconds = today.getTime()
@@ -57,7 +54,6 @@ Rentals.checkout = function(title, id, callback){
     if (movies[0].stock <= 0) return callback(null, "That movie is out of stock.")
 
     db.customers.find({id: id}, function(err, customer){
-      console.log(customer);
       if (customer.length == 0 || err) return callback(null, "Who is that? They don't patronize our fabulous video store.")
 
       doCheckout(customer[0], movies[0], callback)
@@ -78,7 +74,7 @@ Rentals.checkin = function(title, id, callback){
           if(err) {
             callback(err, undefined);
           } else {
-            callback(null, result);
+            callback(null, inserted);
           }
         })
       }

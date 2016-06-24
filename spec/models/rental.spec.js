@@ -27,7 +27,6 @@ describe('rental', function(){
         done()
       })
     })
-
   })
 
   describe('.whoRentedThis', function() {
@@ -50,6 +49,20 @@ describe('rental', function(){
     })
   })
 
+  describe(".checkin", function(){
+    it('updates rental to include returned date', function(done){
+      console.log('ha')
+      Rental.checkout("Chinatown", 9, function(error, result2){
+      })
+      Rental.checkin("Chinatown", 9, function(error, result2){
+        expect(error).toBe(null)
+        expect(result2).toNotBe(null)
+        expect(result2.returned_date).toNotBe(null)
+
+        done()
+      })
+    })
+  })
   describe('.checkout', function() {
     it('creates a rental instance in the database if successful', function(done){
       Rental.checkout("King Kong", '30', function(error, result){
@@ -69,7 +82,37 @@ describe('rental', function(){
       })
     })
 
-  })
+    it("won't check out movie if its out of stock", function(done){
+      Rental.checkout("Jaws", 8, function(error, result){
+        expect(error).toBe(null)
+        expect(result).toNotBe(null)
+        expect(result).toBe("That movie is out of stock.")
+        done()
+      })
+    })
 
+    it("won't checkout movie if it can't find customer", function(done){
+      Rental.checkout("King Kong", 78787887 , function(error, result){
+        expect(error).toBe(null)
+        expect(result).toNotBe(null)
+        expect(result).toBe("Who is that? They don't patronize our fabulous video store.")
+        done()
+      })
+    })
+
+    it("lowers stock of movie after successful checkout", function(done){
+      var pre_stock;
+      Rental.deets('King Kong', function(error, result) {
+        pre_stock = result[0].stock
+      })
+      Rental.checkout("King Kong", 9, function(error, result){
+      })
+      Rental.deets('King Kong', function(error, result) {
+        var post_stock = result[0].stock
+        expect(post_stock).toEqual(pre_stock - 1)
+      })
+      done()
+    })
+  });
 
 })
