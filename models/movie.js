@@ -76,4 +76,6 @@ Movies.historyByCODate = function(title, callback) {
 };
 
 
+Movies.end = function () { db.end() }
+
 module.exports = Movies
