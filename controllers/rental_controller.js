@@ -38,7 +38,7 @@ var RentalController = {
 
     Rental.checkout(title, id, function(error, result){
       if(error) {
-        var err = new Error("Error checkout out movie:\n" + error.message);
+        var err = new Error("Error checking out movie:\n" + error.message);
         err.status = 500;
         next(err);
       } else {
@@ -52,7 +52,7 @@ var RentalController = {
     var title = req.params.title
     Rental.checkin(title, id, function(error, result){
       if(error) {
-        var err = new Error("Error checkout out movie:\n" + error.message);
+        var err = new Error("Error checking in movie:\n" + error.message);
         err.status = 500;
         next(err);
       } else {
@@ -64,7 +64,7 @@ var RentalController = {
   overdue:  function(req, res){
     Rental.overdue(function(error, result){
       if(error) {
-        var err = new Error("Error checkout out movie:\n" + error.message);
+        var err = new Error("Error finding overdue movies:\n" + error.message);
         err.status = 500;
         next(err);
       } else {
@@ -72,31 +72,6 @@ var RentalController = {
       }
     })
   },
-
 }
 
 module.exports = RentalController
-//
-// SELECT *
-//     FROM weather INNER JOIN cities ON (weather.city = cities.name);
-
-
-// SELECT customers.name, rentals.title, rental.checkout_date, rental.due_date
-// FROM rentals
-// INNER JOIN customers
-// ON customers.id == rental.customer_id
-// WHERE rental.due_date < today ; returned_date: null
-//
-//
-// SELECT weather.city, weather.temp_lo, weather.temp_hi,
-//        weather.prcp, weather.date, cities.location
-//     FROM weather, cities
-//     WHERE cities.name = weather.city;
-
-
-// SELECT Customers.CustomerName, Orders.OrderID
-// FROM Customers
-// INNER JOIN Orders
-// ON Customers.CustomerID=Orders.CustomerID
-
-// Orderitem.joins(:order).where("orderitems.user_id = ? and orders.status = ?", self.id, status).sum(:price)
