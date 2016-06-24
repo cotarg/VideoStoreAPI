@@ -87,5 +87,5 @@ Rentals.overdue = function(callback){
   db.run("select customers.name, rentals.title , rentals.checkout_date, rentals.due_date from customers, rentals where rentals.customer_id = customers.id and rentals.returned_date is null and rentals.due_date < $1;", [today], callback)
 }
 
-
+Rentals.end = function () { db.end() }
 module.exports = Rentals;

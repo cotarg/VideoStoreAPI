@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for VideoStoreAPI/models/customer.js</title>
+    <title>Code coverage report for VideoStoreAPI/models/movie.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">VideoStoreAPI/models/</a> customer.js
+      <a href="../../index.html">all files</a> / <a href="index.html">VideoStoreAPI/models/</a> movie.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.47% </span>
+        <span class="strong">27.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>15/38</span>
+        <span class='fraction'>11/40</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.94% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/34</span>
+        <span class='fraction'>0/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.43% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/14</span>
+        <span class='fraction'>0/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.84% </span>
+        <span class="strong">27.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/37</span>
+        <span class='fraction'>11/40</span>
       </div>
     </div>
   </div>
@@ -114,7 +114,15 @@
 69
 70
 71
-72</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+72
+73
+74
+75
+76
+77
+78
+79
+80</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -122,21 +130,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,79 +180,106 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var app = require("../app");
 var db = app.get("db");
 &nbsp;
-var Customers = <span class="fstat-no" title="function not covered" >function(id) {</span>
-<span class="cstat-no" title="statement not covered" >  this.customer_id = id;</span>
+var Movies = <span class="fstat-no" title="function not covered" >function(id) {</span>
+<span class="cstat-no" title="statement not covered" >  this.id = id;</span>
 };
 &nbsp;
-Customers.all = function(callback) {
-  db.run("select * from customers;", function(error, result){
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(error) {
+Movies.all = <span class="fstat-no" title="function not covered" >function(callback) {</span>
+<span class="cstat-no" title="statement not covered" >  db.run('select * from movies', <span class="fstat-no" title="function not covered" >function (error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
 <span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
     } else {
-      callback(null, result);
+<span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
     }
   });
 };
 &nbsp;
-Customers.nameSort = <span class="fstat-no" title="function not covered" >function(options, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  db.customers.find({}, options, <span class="fstat-no" title="function not covered" >function(error, customers) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if(error || !customers) {</span>
-<span class="cstat-no" title="statement not covered" >      callback(error || new Error("Could not retrieve customers"), undefined);</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      console.log(customers)</span>
-<span class="cstat-no" title="statement not covered" >      callback &amp;&amp; callback(null, customers);</span>
-    }
-  });
-};
-&nbsp;
-Customers.registeredSort = <span class="fstat-no" title="function not covered" >function(options, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  db.customers.find({}, options, <span class="fstat-no" title="function not covered" >function(error, customers){</span></span>
-<span class="cstat-no" title="statement not covered" >    if(error || !customers) {</span>
-<span class="cstat-no" title="statement not covered" >      callback(error || new Error("Could not retrieve customers"), undefined);</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      callback(null, customers);</span>
-    }
-  });
-};
-&nbsp;
-Customers.postalSort = <span class="fstat-no" title="function not covered" >function(options, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  db.customers.find({}, options, <span class="fstat-no" title="function not covered" >function(error, customers){</span></span>
-<span class="cstat-no" title="statement not covered" >    if(error || !customers) {</span>
-<span class="cstat-no" title="statement not covered" >      callback(error || new Error("Could not retrieve customers"), undefined);</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      callback(null, customers);</span>
-    }
-  });
-};
-&nbsp;
-Customers.currentrentals = <span class="fstat-no" title="function not covered" >function(cust_id, callback){</span>
-<span class="cstat-no" title="statement not covered" >  db.run("select movies.title, rentals.customer_id, rentals.returned_date, rentals.checkout_date from rentals, movies where rentals.customer_id = $1 and rentals.title = movies.title and rentals.returned_date is null;", [cust_id], <span class="fstat-no" title="function not covered" >function(error, result){</span></span>
-<span class="cstat-no" title="statement not covered" >    if(error || !result) {</span>
-<span class="cstat-no" title="statement not covered" >      callback(error || new Error("Could not retrieve data"), undefined);</span>
+Movies.byTitle = <span class="fstat-no" title="function not covered" >function(num, p, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  db.movies.find({}, {order: 'title asc', limit: num, offset: p}, <span class="fstat-no" title="function not covered" >function (error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
     } else {
 <span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
     }
   });
 };
 &nbsp;
-Customers.pastRentals = <span class="fstat-no" title="function not covered" >function(cust_id, callback){</span>
-<span class="cstat-no" title="statement not covered" >  db.rentals.where('customer_id = $1 and returned_date is not null order by checkout_date',  [cust_id], <span class="fstat-no" title="function not covered" >function(error, result){</span></span>
-<span class="cstat-no" title="statement not covered" >    if(error || !result) {</span>
-<span class="cstat-no" title="statement not covered" >      callback(error || new Error("Could not retrieve data"), undefined);</span>
+Movies.byRelease = <span class="fstat-no" title="function not covered" >function(num, p, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  db.movies.find({}, {order: 'release_date asc', limit: num, offset: p}, <span class="fstat-no" title="function not covered" >function (error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
     } else {
 <span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
     }
   });
 };
 &nbsp;
-Customers.end = function () { db.end() }
+Movies.deets = <span class="fstat-no" title="function not covered" >function(title, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  db.movies.where('title=$1', title, <span class="fstat-no" title="function not covered" >function (error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
+    }
+  });
+};
 &nbsp;
-module.exports = Customers;
+Movies.currentCustomers = <span class="fstat-no" title="function not covered" >function(title, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null;', [title], <span class="fstat-no" title="function not covered" >function(error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
+    }
+  });
+};
+&nbsp;
+Movies.historyByCust = <span class="fstat-no" title="function not covered" >function(title, callback){</span>
+<span class="cstat-no" title="statement not covered" >  db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is not null order by customers.name asc;', [title], <span class="fstat-no" title="function not covered" >function (error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
+    }
+  });
+};
+&nbsp;
+Movies.historyByCODate = <span class="fstat-no" title="function not covered" >function(title, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  db.run('select customers.name, customers.phone, customers.account_credit from rentals, customers where rentals.customer_id = customers.id and rentals.title=$1 and rentals.returned_date is null order by checkout_date asc;', [title], <span class="fstat-no" title="function not covered" >function(error, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback(error, undefined);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      callback(null, result);</span>
+    }
+  });
+};
+&nbsp;
+&nbsp;
+module.exports = Movies
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
