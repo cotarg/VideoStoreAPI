@@ -1,6 +1,10 @@
 var Customer = require('../../models/customer')
 
 describe('Customer', function () {
+  beforeEach(function () {
+    Customer.clean()
+  })
+
   afterEach(function () {
     Customer.end()
   })
@@ -34,4 +38,16 @@ describe('Customer', function () {
       })
     })
   })
+
+  describe('.postalSort', function () {
+    it('should return all customers, sorted by zipcode', function (done) {
+      Customer.nameSort(function (error, customers) {
+      expect(customers.length).toEqual(200)
+      expect(Object.prototype.toString.call(customers)).toBe('[object Array]')
+      done()
+      })
+    })
+  })
+
+
 })
