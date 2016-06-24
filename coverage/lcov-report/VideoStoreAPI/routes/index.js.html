@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for VideoStoreAPI/routes/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">VideoStoreAPI/routes/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/10</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var express = require('express')
+var router = express.Router()
+var docs = {
+  customers: {
+    list_all_customers: {
+      routeName: 'List all customers',
+      httpRequest: 'GET /customers',
+      requiredParameters: 'none',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint contains a list of all customers in your database, generated at time of request.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    customers_sorted_by_name: {
+      routeName: 'List Customers, Sorted by Name',
+      httpRequest: 'GET /customers/sort/name',
+      requiredParameters: 'none',
+      optionalParameters: 'n=? to limit the number of records returned, p=? for offset',
+      intendedUse: 'This endpoint returns a list of all customers in your database (generated at time of query), sorted by name. Query string n=? will limit the number of returned records, and p=? will offset your records by that number.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+    
+    customers_sorted_by_zip: {
+      routeName: 'List Customers, Sorted by Postal Code',
+      httpRequest: 'GET /customers/sort/postal_code',
+      requiredParameters: 'none',
+      optionalParameters: 'n=? to limit the number of records returned, p=? for offset',
+      intendedUse: 'This endpoint returns a list of customers in your database (generated at time of query) sorted by zipcode. Query string n=? will limit the number of records returned, and p=? will offset your records by that number.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    list_customer_checkouts: {
+      routeName: 'List Checkouts to Customer',
+      httpRequest: 'GET /customers/:id/current',
+      requiredParameters: 'customer id number',
+      optionalParameters: 'none',
+      intendedUse: 'Given a customer id, this endpoint returns a list (generated at time of query) of all checkouts a customer currently has.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    customer_checkout_history: {
+      routeName: 'List Customer Checkout History',
+      httpRequest: 'GET /customers/:id/history',
+      requiredParameters: 'customer id number',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns a list (generated at time of query) of all checkouts a customer has previously made. (These are all films that have been returned.)',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    }
+  },
+&nbsp;
+  movies: {
+    list_all_movies: {
+      routeName: 'List All Movies',
+      httpRequest: 'GET /movies',
+      requiredParameters: 'none',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint will return a list of all movies in your database, generated at time of query.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    movies_sorted_by_title: {
+      routeName: 'List Movies, Sorted by Title',
+      httpRequest: 'GET /movies/sort/title',
+      requiredParameters: 'none',
+      optionalParameters: 'n=? to limit the number of records returned, p=? for offset',
+      intendedUse: 'This endpoint will return a list of all movies in your database, generated at time of query. Query string n=? will allow you to limit how many records are returned, and query string p=? will offset your records by that number.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    movies_sorted_by_release: {
+      routeName: 'List Movies, Sorted by Title',
+      httpRequest: 'GET /movies/sort/title',
+      requiredParameters: 'none',
+      optionalParameters: 'n=? to limit the number of records returned, p=? for offset',
+      intendedUse: 'This endpoint will return a list of all movies in your database, generated at time of query. Query string n=? will allow you to limit how many records are returned, and query string p=? will offset your records by that number.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    movie_details: {
+      routeName: 'View Details for Title',
+      httpRequest: 'GET /movies/:title',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the details for a movie title. It will show title, summary description, release date, number of copies owned, and number of copies in stock. Generated at time of query.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    movie_checkouts: {
+      routeName: 'View Checkouts for Title',
+      httpRequest: 'GET /movies/:title/current',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the the current checkout records for the given film. It will return customer name, phone number, and account credit for each checked out copy of the film.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    movie_hist_name_sort: {
+      routeName: 'View Historical Checkouts for Title by Name',
+      httpRequest: 'GET /movies/:title/history/sort/name',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the the historical checkout records for the given film. It will return customer name, phone number, and account credit for each checked out copy of the film and is ordered by customer name.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    movie_hist_checkout_sort: {
+      routeName: 'View Historical Checkouts for Title by Date',
+      httpRequest: 'GET /movies/:title/history/sort/date',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the the historical checkout records for the given film. It will return customer name, phone number, and account credit for each checked out copy of the film and is ordered by customer name.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    }
+  },
+&nbsp;
+  rentals: {
+    rental_checkouts: {
+      routeName: 'View Current Checkouts for Title',
+      httpRequest: 'GET /rentals/:title/current',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the the historical checkout records for the given film. It will return customer name, phone number, and account credit for each checked out copy of the film and is ordered by customer name.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    rental_hist_name_sort: {
+      routeName: 'View Historical Checkouts for Title by Name',
+      httpRequest: 'GET /rentals/:title/history/sort/name',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the the historical checkout records for the given film. It will return customer name, phone number, and account credit for each checked out copy of the film and is ordered by customer name.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    rental_hist_checkout_sort: {
+      routeName: 'View Historical Checkouts for Title by Date',
+      httpRequest: 'GET /rentals/:title/history/sort/date',
+      requiredParameters: 'film title',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint returns the the historical checkout records for the given film. It will return customer name, phone number, and account credit for each checked out copy of the film and is ordered by customer name.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    checkout_film_to_cust: {
+      routeName: 'View Historical Checkouts for Title by Date',
+      httpRequest: 'POST /rentals/:title/checkout',
+      requiredParameters: 'film title in route, customer ID in post body',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint will create a new checkout record tying the customer id and film title together in the rentals database along with date checked out and due date. Current default rental period is 3 days.',
+      dataBreakdown: {
+        someDataFound: 'returns the checkout record',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    checkin_film_from_cust: {
+      routeName: 'View Historical Checkouts for Title by Date',
+      httpRequest: 'POST /rentals/:title/return',
+      requiredParameters: 'film title in route, customer ID in post body',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint will update the checkout record tying the customer id and film title together with the date checked in. It will also deduct any fees from customer credit. (This can send customer credit negative, which means they owe money.',
+      dataBreakdown: {
+        someDataFound: 'returns the checkout record',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    },
+&nbsp;
+    list_of_overdue_films: {
+      routeName: 'List All Overdue Films',
+      httpRequest: 'GET /rentals/overdue',
+      requiredParameters: 'none',
+      optionalParameters: 'none',
+      intendedUse: 'This endpoint will return a list (generated at time of query) of all films currently checked out and overdue.',
+      dataBreakdown: {
+        someDataFound: 'returns the found data',
+        noDataFound: 'Error',
+        error: 'Error'
+      }
+    }
+  }
+}
+&nbsp;
+/* GET home page. */
+router.get('/', <span class="fstat-no" title="function not covered" >function (req, res, next) {</span>
+<span class="cstat-no" title="statement not covered" >  res.status(200).json(docs)</span>
+})
+&nbsp;
+router.get('/zomg', <span class="fstat-no" title="function not covered" >function (req, res, next) {</span>
+<span class="cstat-no" title="statement not covered" >  res.status(200).json({itWorks: 'it works!'})</span>
+})
+&nbsp;
+router.get('/api/docs.json', <span class="fstat-no" title="function not covered" >function (req, res, next){</span>
+<span class="cstat-no" title="statement not covered" >  res.status(200).json(docs)</span>
+})
+&nbsp;
+module.exports = router
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 24 2016 09:57:03 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

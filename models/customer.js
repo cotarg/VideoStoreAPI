@@ -15,12 +15,13 @@ Customers.all = function(callback) {
   });
 };
 
-Customers.nameSort = function(options,callback) {
+Customers.nameSort = function(options, callback) {
   db.customers.find({}, options, function(error, customers) {
     if(error || !customers) {
       callback(error || new Error("Could not retrieve customers"), undefined);
     } else {
-      callback(null, customers);
+      console.log(customers)
+      callback && callback(null, customers);
     }
   });
 };
@@ -65,5 +66,6 @@ Customers.pastRentals = function(cust_id, callback){
   });
 };
 
+Customers.end = function () { db.end() }
 
 module.exports = Customers;
